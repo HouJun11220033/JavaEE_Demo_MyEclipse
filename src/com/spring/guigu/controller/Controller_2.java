@@ -1,13 +1,13 @@
 package com.spring.guigu.controller;
 
-import com.spring.guigu.dao.EmployeeDao;
-import com.spring.guigu.model.Employee;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Collection;
 import java.util.Date;
+
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.http.HttpHeaders;
@@ -19,6 +19,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.spring.guigu.dao.EmployeeDao;
+import com.spring.guigu.model.Employee;
+
 @Controller
 public class Controller_2 {
 
@@ -26,6 +29,21 @@ public class Controller_2 {
 	private EmployeeDao employeeDao;
 	@Autowired
 	private ResourceBundleMessageSource messageSource;
+
+	// @ExceptionHandler({ ArithmeticException.class })
+	// public ModelAndView handleArithmeticException(Exception ex) {
+	// System.out.println("出异常了: " + ex);
+	// ModelAndView mv = new ModelAndView("error");
+	// mv.addObject("exception", ex);
+	// return mv;
+	// }
+
+	@RequestMapping("/testExceptionHandlerExceptionResolver")
+	public String testExceptionHandlerExceptionResolver(@RequestParam("i") int i) {
+		System.out.println("result: " + (10 / i));
+
+		return "success";
+	}
 
 	@RequestMapping("/testResponseEntity")
 	public ResponseEntity<byte[]> testResponseEntity(HttpSession session)

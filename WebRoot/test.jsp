@@ -47,6 +47,10 @@
 	<a href="springmvc/testRedirect">Test Redirect</a>
 	<br>
 	<br>
+	<br>
+	<br>
+	<a href="testExceptionHandlerExceptionResolver?i=0">Test
+		ExceptionHandlerExceptionResolver</a>
 
 
 </body>
