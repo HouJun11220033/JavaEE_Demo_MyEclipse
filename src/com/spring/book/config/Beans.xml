@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+<!--   <bean id="helloWorld" class="com.tutorialspoint.HelloWorld">
+       <property name="message1" value="Hello World!"/>
+       <property name="message2" value="Hello World!"/>
+   </bean>-->
+
+</beans>
+
+
+<!--<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+    http://www.springframework.org/schema/tx
+    http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+    http://www.springframework.org/schema/aop 
+    http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context-3.0.xsd" xmlns:tx="http://www.springframework.org/schema/tx">
+    <context:annotation-config/>
+    <bean id="beanTeamplate" abstract="true">
+        <property name="message1" value="Hello Spring"/>
+        <property name="message2" value="Hello JavaEE"/>
+        <property name="message3" value="Hello PAT"/>
+            
+    </bean>
+    <aop:config>
+        <aop:aspect id="log" ref="logging">
+            pointcut里面存的是一组方法
+            <aop:pointcut id="selectAll" expression="execution(* com.spring.hellospring.*.*(..))"/>
+            <aop:before pointcut-ref="selectAll" method="beforeAdvice"/>
+            <aop:before pointcut-ref="selectAll" method="afterAdvice"/>
+            <aop:after-returning pointcut-ref="selectAll" method="afterReturningAdvice"
+            returning="retVal"/>
+                     
+             <aop:after-throwing  pointcut-ref="selectAll" method="AfterThrowingAdvice"
+            throwing="ex"/>
+        </aop:aspect>
+                     
+    </aop:config>
+    <bean id="logging" class="com.spring.hellospring.Logging"/> 
+
+    <bean id="helloworld" class="com.spring.hellospring.HelloWorld">
+     <property name="message1" value="Hello World!!!"/>
+     <property name="message2" value="Hello World!!!"/>
+        
+    </bean>
+   <bean id="student" class="com.spring.hellospring.Student">
+      <property name="name"  value="Zara" />
+      <property name="age"  value="11"/>      
+   </bean>
+    <bean id="cStartEventHandler" class="com.spring.hellospring.CStartEventHandler"/>
+    <bean id="cStopEventHandler" class="com.spring.hellospring.CStopEventHandler"/>
+    <bean id="customEventHandler" 
+      class="com.spring.hellospring.CustomEventHandler"/>
+
+   <bean id="customEventPublisher" 
+      class="com.spring.hellospring.CustomEventPublisher"/>
+    <bean id="helloworld_1" class="com.spring.hellospring.HelloWorld" lazy-init="true" init-method="init" destroy-method="destory" scope="singleton">
+        <property name="message1" value="Hello World!!!"/>
+        <property name="message2" value="Hello World!!!"/>
+        
+    </bean>
+    <bean id="hellochina" class="com.spring.hellospring.HelloChina" parent="helloworld">
+        <property name="message1" value="Hello World!!!"/>
+        <property name="message2" value="Hello Spring"/>
+        <property name="message3" value="Hello World!!!"/>
+    
+    </bean>
+    <bean class="com.spring.hellospring.InitHelloWorld"/>
+    <bean id="textEditor" class="com.spring.hellospring.TextEditor">
+                <property name="spellChecker">
+            <bean id="spellChecker" class="com.spring.hellospring.SpellChecker"></bean>
+        </property>
+        <constructor-arg name="name" value="Generic Text Editor"/>
+    </bean>
+    <bean id="spellChecker" class="com.spring.hellospring.SpellChecker"></bean>
+    <bean id="javaCollection" class="com.spring.hellospring.JavaCollection">
+        <property name="addrList">
+            <list>
+                <value>INDIA</value>
+                <value>Pakistan</value>
+                <value>USA</value>
+                <value>USA</value>
+            </list>
+        
+        </property>
+        <property name="addrSet">
+            <set>
+                <value>INDIA</value>
+                <value>Pakistan</value>
+                <value>USA</value>
+                <value>USA</value>
+            </set>
+            
+        </property>
+        <property name="addrMap">
+            <map>
+                <entry key="1" value="INDIA"/>
+                <entry key="2" value="Pakistan"/>
+                <entry key="3" value="USA"/>
+                <entry key="4" value="USA"/>
+            </map>
+            
+            
+        </property>
+        <property name="addrProp">
+            <props>
+                <prop key="one">INDIA</prop>
+                <prop key="two">Pakistan</prop>
+                <prop key="three">USA</prop>
+                <prop key="four">USA</prop>
+                
+            </props>
+            
+            
+        </property>
+            
+               </bean>
+            
+        
+    <bean id="student1" class="com.spring.hellospring.Student">
+        <property name="name"  value="Zara" />
+        <property name="age"  value="11"/>
+    </bean>
+    <bean id="student2" class="com.spring.hellospring.Student">
+        <property name="name"  value="Nuha" />
+        <property name="age"  value="2"/>
+    </bean>
+
+    <bean id="profile" class="com.spring.hellospring.Profile">
+    </bean>
+    
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://localhost:3306/TEST"/>
+        <property name="username" value="root"/>
+        <property name="password" value="root"/>
+    
+    </bean>
+    <tx:advice id="txAdvice" transaction-manager="transactionManager">
+        <tx:attributes>
+            <tx:method name="create"/>
+        </tx:attributes>
+    
+    
+    </tx:advice>
+    <aop:config proxy-target-class="false">
+        <aop:pointcut id="createOperation" expression="execution(* com.spring.hellospring.StudentJDBCTemplate.create(..))"/>
+        <aop:advisor advice-ref="txAdvice" pointcut-ref="createOperation"/>
+    </aop:config>
+    
+    <bean id="transactionManager" 
+          class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource"  ref="dataSource" />    
+    </bean>
+    <bean id="studentJDBCTemplate" class="com.spring.hellospring.StudentJDBCTemplate">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="transactionManager" ref="transactionManager"/>
+    
+    </bean>
+
+</beans>-->

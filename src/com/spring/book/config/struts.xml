@@ -1,0 +1,106 @@
+<!--<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+   <constant name="struts.devMode" value="false" />
+   <constant name="struts.i18n.encoding" value="UTF-8"/>
+   <constant name="struts.multipart.maxSize" value="1000000" />
+
+   <package name="helloworld" extends="struts-default">
+   <action name="upload" class="com.tutorialspoint.struts2.uploadFile">
+       <result name="success">/good_result.jsp</result>
+       <result name="error">/error.jsp</result>
+   </action>
+   
+   <action name="upload2" class="com.example.UploadAction">
+       <result name="success">/good_result.jsp</result>
+       <result name="error">/error.jsp</result>
+   </action>
+     
+    </package>
+    <package name="helloworld" extends="struts-default">
+
+        <interceptors>
+            <interceptor name="myinterceptor"
+                         class="com.tutorialspoint.struts2.MyInterceptor" />
+        </interceptors>
+
+        <action name="hello" 
+                class="com.tutorialspoint.struts2.HelloWorldAction" 
+                method="execute">
+            <interceptor-ref name="params"/>
+            <interceptor-ref name="myinterceptor" />
+            <result name="success">/HelloWorld.jsp</result>
+        </action>
+
+    </package>
+    <package name="loginAuthority" extends="struts-default">
+        <interceptors> 
+            <interceptor name="authority" class="com.struts2.interceptor.AuthorityInterceptor"/>
+        </interceptors>
+        <action name="viewBook">
+             返回success视图名时，
+            转入/viewBook.jsp页面 
+            
+            <result>/viewBook.jsp</result>
+            
+            <interceptor-ref name="defaultStack"/>
+            <interceptor-ref name="authority"/>
+         
+        </action>
+        
+        <action name="login" class="com.struts2.action.LoginAction">
+            <result name="error">/error.jsp</result>
+            <result name="success">/welcome.jsp</result>
+        </action> 
+        <global-results>
+            
+            <result name="login">/login.jsp</result>
+        </global-results>
+  
+    
+    </package>
+    <package name="lee" extends="struts-default">
+		 用户拦截器定义在该元素下 
+		<interceptors>
+			 定义了一个名为authority的拦截器 
+			<interceptor name="authority" 
+			class="com.struts2.interceptor.AuthorityInterceptor"/>
+		</interceptors>
+
+		 定义全局Result 
+		<global-results>
+			 当返回login视图名时，转入login.jsp页面 
+			<result name="login">/login.jsp</result>
+		</global-results>
+
+		<action name="login" class="com.struts2.action.LoginAction">
+			<result name="error">/error.jsp</result>
+			<result name="success">/welcome.jsp</result>
+		</action>
+		 定义一个名为viewBook的Action，其实现类为ActionSupport 
+		<action name="viewBook">
+			 返回success视图名时，
+				转入/WEB-INF/content/viewBook.jsp页面 
+			<result>/viewBook.jsp</result>
+			<interceptor-ref name="defaultStack"/>
+			 应用自定义拦截器 
+			<interceptor-ref name="authority"/>
+		</action>
+		
+    </package>
+    <package name="JSON" extends="json-default">
+        <action name="JSONExample" class="com.struts2.action.JSONExample">
+            <result type="json">
+                <param name="noCache">true</param>
+                <param name="contentType">text/html</param>
+            </result>
+                
+        </action>
+        
+        
+        
+    </package>
+   
+</struts>-->
