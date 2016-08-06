@@ -1,4 +1,4 @@
-package com.hibernate.tutorialspoint.pojo;
+package com.hibernate.tutorialspoint.model;
 
 public class Employee {
 
