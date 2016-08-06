@@ -1,4 +1,4 @@
-package com.example;
+package com.struts2.example;
 
 import java.io.File;
 import java.io.IOException;

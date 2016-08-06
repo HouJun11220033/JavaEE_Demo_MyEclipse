@@ -16,19 +16,49 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
 import com.spring.guigu.dao.EmployeeDao;
+import com.spring.guigu.exception.UserNameNotMatchPasswordException;
 import com.spring.guigu.model.Employee;
 
 @Controller
+// @RequestMapping("springmvc")
 public class Controller_2 {
 
 	@Autowired
 	private EmployeeDao employeeDao;
 	@Autowired
 	private ResourceBundleMessageSource messageSource;
+
+	@RequestMapping(value = "/testDefaultHandlerExceptionResolver", method = RequestMethod.POST)
+	public String testDefaultHandlerExceptionResolver() {
+		System.out.println("testDefaultHandlerExceptionResolver...");
+
+		return "success";
+	}
+
+	@ResponseStatus(reason = "测试", value = HttpStatus.NOT_FOUND)
+	@RequestMapping("/testResponseStatusExceptionResolver")
+	public String testResponseStatusExceptionResolver(@RequestParam("i") int i) {
+		if (i == 13) {
+			throw new UserNameNotMatchPasswordException();
+		}
+		System.out.println("testResponseStatusExceptionResolver...");
+
+		return "success";
+	}
+
+	@RequestMapping("/testSimpleMappingExceptionResolver")
+	public String testSimpleMappingExceptionResolver(@RequestParam("i") int i) {
+		String[] vals = new String[10];
+		System.out.println(vals[i]);
+		return "success";
+
+	}
 
 	// @ExceptionHandler({ ArithmeticException.class })
 	// public ModelAndView handleArithmeticException(Exception ex) {

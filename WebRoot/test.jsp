@@ -45,12 +45,21 @@
 	<a href="springmvc/testView">Test View</a>
 	<br>
 	<a href="springmvc/testRedirect">Test Redirect</a>
-	<br>
-	<br>
-	<br>
-	<br>
+
 	<a href="testExceptionHandlerExceptionResolver?i=0">Test
 		ExceptionHandlerExceptionResolver</a>
+	<br>
+	<br>
+	<a href="testSimpleMappingExceptionResolver?i=2">Test
+		SimpleMappingExceptionResolver</a>
+	<br>
+	<br>
+	<a href="testResponseStatusExceptionResolver?i=10">Test
+		ResponseStatusExceptionResolver</a>
+	<br>
+	<br>
+	<a href="testDefaultHandlerExceptionResolver">Test
+		DefaultHandlerExceptionResolver</a>
 
 
 </body>
