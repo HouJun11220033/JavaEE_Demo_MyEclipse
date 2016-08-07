@@ -2,7 +2,7 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
-<hibernate-mapping package="com.atguigu.hibernate.helloworld">
+<hibernate-mapping package="com.hibernate.guigu.helloworld">
 
 	<class name="News" table="NEWS">
 
