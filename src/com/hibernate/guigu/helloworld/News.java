@@ -1,52 +1,33 @@
 package com.hibernate.guigu.helloworld;
 
-import java.sql.Blob;
-import java.util.Date;
+import java.sql.Date;
+
 
 public class News {
 
-	private Integer id; // field
+	private Integer id;
 	private String title;
 	private String author;
-
-	private String desc;
-
-	// 使用 title + "," + content 可以来描述当前的 News 记录.
-	// 即 title + "," + content 可以作为 News 的 desc 属性值
-
-	private String content;
-
-	private Blob picture;
-
-	public Blob getPicture() {
-		return picture;
-	}
-
-	public void setPicture(Blob picture) {
-		this.picture = picture;
-	}
-
-	public String getContent() {
-		return content;
-	}
-
-	public void setContent(String content) {
-		this.content = content;
-	}
-
-	public String getDesc() {
-		return desc;
-	}
-
-	public void setDesc(String desc) {
-		this.desc = desc;
-	}
-
 	private Date date;
 
-	public Integer getId() { // property
+	@Override
+	public String toString() {
+		return "News [id=" + id + ", title=" + title + ", author=" + author
+				+ ", date=" + date + "]";
+	}
+
+	public Integer getId() {
 		return id;
 	}
+
+	public News(String title, String author) {
+
+		this.title = title;
+		this.author = author;
+		// this.date = (Date);
+	}
+
+
 
 	public void setId(Integer id) {
 		this.id = id;
@@ -76,21 +57,5 @@ public class News {
 		this.date = date;
 	}
 
-	public News(String title, String author, Date date) {
-		super();
-		this.title = title;
-		this.author = author;
-		this.date = date;
-	}
-
-	public News() {
-		// TODO Auto-generated constructor stub
-	}
-
-	@Override
-	public String toString() {
-		return "News [id=" + id + ", title=" + title + ", author=" + author
-				+ ", date=" + date + "]";
-	}
 
 }
