@@ -8,15 +8,23 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.service.ServiceRegistry;
+import org.hibernate.service.ServiceRegistryBuilder;
 
 import com.hibernate.tutorialspoint.model.Employee;
 
 public class ManageEmployee {
-	private static SessionFactory factory;
+	private static SessionFactory sessionFactory;
 
 	public static void main(String[] args) {
+
+		Configuration configuration = new Configuration().configure();
+		ServiceRegistry serviceRegistry = new ServiceRegistryBuilder()
+				.applySettings(configuration.getProperties())
+				.buildServiceRegistry();
+
 		try {
-			factory = new Configuration().configure().buildSessionFactory();
+			sessionFactory = configuration.buildSessionFactory(serviceRegistry);
 		} catch (Throwable ex) {
 			System.err.println("Failed to create sessionFactory object." + ex);
 			throw new ExceptionInInitializerError(ex);
@@ -43,7 +51,7 @@ public class ManageEmployee {
 
 	/* Method to CREATE an employee in the database */
 	public Integer addEmployee(String fname, String lname, int salary) {
-		Session session = factory.openSession();
+		Session session = sessionFactory.openSession();
 		Transaction tx = null;
 		Integer employeeID = null;
 		try {
@@ -63,7 +71,7 @@ public class ManageEmployee {
 
 	/* Method to READ all the employees */
 	public void listEmployees() {
-		Session session = factory.openSession();
+		Session session = sessionFactory.openSession();
 		Transaction tx = null;
 		try {
 			tx = session.beginTransaction();
@@ -86,7 +94,7 @@ public class ManageEmployee {
 
 	/* Method to UPDATE salary for an employee */
 	public void updateEmployee(Integer EmployeeID, int salary) {
-		Session session = factory.openSession();
+		Session session = sessionFactory.openSession();
 		Transaction tx = null;
 		try {
 			tx = session.beginTransaction();
@@ -106,7 +114,7 @@ public class ManageEmployee {
 
 	/* Method to DELETE an employee from the records */
 	public void deleteEmployee(Integer EmployeeID) {
-		Session session = factory.openSession();
+		Session session = sessionFactory.openSession();
 		Transaction tx = null;
 		try {
 			tx = session.beginTransaction();
