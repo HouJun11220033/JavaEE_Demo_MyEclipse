@@ -1,19 +1,17 @@
 package com.hibernate.guigu.helloworld;
 
-import java.sql.Date;
-
-
 public class News {
 
 	private Integer id;
 	private String title;
 	private String author;
-	private Date date;
+
+	// private Date date;
 
 	@Override
 	public String toString() {
 		return "News [id=" + id + ", title=" + title + ", author=" + author
-				+ ", date=" + date + "]";
+				+ "]";
 	}
 
 	public Integer getId() {
@@ -26,8 +24,6 @@ public class News {
 		this.author = author;
 		// this.date = (Date);
 	}
-
-
 
 	public void setId(Integer id) {
 		this.id = id;
@@ -48,14 +44,5 @@ public class News {
 	public void setAuthor(String author) {
 		this.author = author;
 	}
-
-	public Date getDate() {
-		return date;
-	}
-
-	public void setDate(Date date) {
-		this.date = date;
-	}
-
 
 }

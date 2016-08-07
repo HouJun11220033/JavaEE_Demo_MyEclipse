@@ -4,7 +4,7 @@
 
 <hibernate-mapping package="com.hibernate.guigu.helloworld">
 
-	<class name="News" table="NEWS">
+	<class name="com.hibernate.guigu.helloworld.News" table="NEWS">
 
 		<id name="id" type="java.lang.Integer">
 			<column name="ID" />
@@ -21,12 +21,12 @@
 			<column name="AUTHOR" />
 		</property>
 
-		<property name="date" type="date">
-			<column name="DATE" />
-		</property>
+<!-- 		<property name="date" type="date"> -->
+<!-- 			<column name="DATE" /> -->
+<!-- 		</property> -->
 
 		<!-- <property name="desc" -->
-		<!-- formula="(SELECT concat(title, ',', author) FROM NEWS n WHERE n.id 
+		<!-- formula="(SELECT concat(title, ',', author) FROM NEWS n WHE RE n.id 
 			= id)"></property> -->
 
 		<!-- <property name="content"> -->
