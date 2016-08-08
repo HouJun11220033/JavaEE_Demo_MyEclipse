@@ -29,6 +29,13 @@ public class News {
 
 	}
 
+	public News(Integer id, String title, String author) {
+		this.id = id;
+		this.title = title;
+		this.author = author;
+
+	}
+
 	public void setId(Integer id) {
 		this.id = id;
 	}

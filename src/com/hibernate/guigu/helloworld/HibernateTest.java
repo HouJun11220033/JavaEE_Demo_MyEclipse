@@ -16,24 +16,40 @@ public class HibernateTest {
 	private Configuration configuration;
 	private Transaction tx;
 
-	@Before
-	public void init() {
+	@Test
+	public void testClear() {
+		News news1 = (News) session.get(News.class, 1);
+		System.out.println(news1);
+		session.clear();
+		News news2 = (News) session.get(News.class, 1);
+		System.out.println(news2);
 
-		configuration = new Configuration().configure();
-		ServiceRegistry serviceRegistry = new ServiceRegistryBuilder()
-				.applySettings(configuration.getProperties())
-				.buildServiceRegistry();
-		sessionFactory = configuration.buildSessionFactory(serviceRegistry);
-		session = sessionFactory.openSession();
-		tx = session.beginTransaction();
+	}
+	@Test
+	public void testRefresh()
+	{
+		News news = (News) session.get(News.class, 1);
+		System.out.println(news);
+		session.refresh(news);
+		System.out.println(news);
+		
+	}
+
+	@Test
+	public void testSesionFlush2() {
+		News new1 = new News("Python", "HouJun");
+		session.save(new1);
 
 	}
 
-	@After
-	public void destory() {
-		tx.commit();
-		session.close();
-		sessionFactory.close();
+	@Test
+	public void testSessionFlush() {
+		News news1 = (News) session.get(News.class, 1);
+		news1.setAuthor("BBB");
+		// session.flush();
+		System.out.println(news1);
+		News news2 = (News) session.createCriteria(News.class).uniqueResult();
+		System.out.println(news2);
 
 	}
 
@@ -45,6 +61,12 @@ public class HibernateTest {
 		System.out.println(news1);
 		System.out.println(news2);
 
+	}
+
+	@Test
+	public void testCreateTable() {
+		News news1 = new News(6, "Java", "CC");
+		session.save(news1);
 	}
 
 	@Test
@@ -70,6 +92,27 @@ public class HibernateTest {
 		// tx.commit();
 		// session.close();
 		// sessionFactory.close();
+
+	}
+
+	@Before
+	public void init() {
+
+		configuration = new Configuration().configure();
+		ServiceRegistry serviceRegistry = new ServiceRegistryBuilder()
+				.applySettings(configuration.getProperties())
+				.buildServiceRegistry();
+		sessionFactory = configuration.buildSessionFactory(serviceRegistry);
+		session = sessionFactory.openSession();
+		tx = session.beginTransaction();
+
+	}
+
+	@After
+	public void destory() {
+		tx.commit();
+		session.close();
+		sessionFactory.close();
 
 	}
 }
