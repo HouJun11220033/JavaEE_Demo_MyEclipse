@@ -25,6 +25,10 @@ public class News {
 		// this.date = (Date);
 	}
 
+	public News() {
+
+	}
+
 	public void setId(Integer id) {
 		this.id = id;
 	}
