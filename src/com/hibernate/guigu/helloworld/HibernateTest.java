@@ -25,14 +25,14 @@ public class HibernateTest {
 		System.out.println(news2);
 
 	}
+
 	@Test
-	public void testRefresh()
-	{
+	public void testRefresh() {
 		News news = (News) session.get(News.class, 1);
 		System.out.println(news);
 		session.refresh(news);
 		System.out.println(news);
-		
+
 	}
 
 	@Test
@@ -99,8 +99,7 @@ public class HibernateTest {
 	public void init() {
 
 		configuration = new Configuration().configure();
-		ServiceRegistry serviceRegistry = new ServiceRegistryBuilder()
-				.applySettings(configuration.getProperties())
+		ServiceRegistry serviceRegistry = new ServiceRegistryBuilder().applySettings(configuration.getProperties())
 				.buildServiceRegistry();
 		sessionFactory = configuration.buildSessionFactory(serviceRegistry);
 		session = sessionFactory.openSession();
