@@ -8,12 +8,26 @@
 		<property name="connection.username">root</property>
 		<property name="connection.password">root</property>
 		<property name="connection.isolation">2</property>
-		<property name="dialect">org.hibernate.dialect.MySQLInnoDBDialect</property>
+		<property name="dialect">org.hibernate.dialect.MySQL5Dialect</property>
 		<property name="javax.persistence.validation.mode">none</property>
 		<property name="format_sql">true</property>
 		<property name="show_sql">true</property>
+		<property name="hibernate.hbm2ddl.auto">update</property>
+		<!-- <property name="use_identifier_rollback">true</property> -->
+		<property name="hibernate.c3p0.max_size">10</property>
+		<property name="hibernate.c3p0.min_size">5</property>
+		<property name="hibernate.c3p0.timeout">2000</property>
+		<property name="c3p0.idle_test_period">2000</property>
+		<property name="c3p0.acquire_increment">2</property>
+		<property name="c3p0.max_statements">10</property>
+		<property name="hibernate.jdbc.fetch_size">100</property>
+		<property name="jdbc.batch_size">30</property>
 
-		<mapping resource="com/hibernate/tutorialspoint/model/Employee.hbm.xml" />
+
+
+
+		<!-- <mapping resource="com/hibernate/tutorialspoint/model/Employee.hbm.xml" 
+			/> -->
 		<mapping resource="com/hibernate/guigu/helloworld/News.hbm.xml" />
 	</session-factory>
 </hibernate-configuration>

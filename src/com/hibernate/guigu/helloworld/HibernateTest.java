@@ -1,5 +1,7 @@
 package com.hibernate.guigu.helloworld;
 
+import java.util.Date;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -15,6 +17,14 @@ public class HibernateTest {
 	private Session session;
 	private Configuration configuration;
 	private Transaction tx;
+
+	@Test
+	public void testIdGenerator() throws InterruptedException {
+		News news = new News("AA", "aa", new java.sql.Date(new Date().getTime()));
+		session.save(news);
+
+		// Thread.sleep(5000);
+	}
 
 	@Test
 	public void testClear() {
@@ -37,7 +47,7 @@ public class HibernateTest {
 
 	@Test
 	public void testSesionFlush2() {
-		News new1 = new News("Python", "HouJun");
+		News new1 = new News();
 		session.save(new1);
 
 	}
@@ -65,7 +75,7 @@ public class HibernateTest {
 
 	@Test
 	public void testCreateTable() {
-		News news1 = new News(6, "Java", "CC");
+		News news1 = new News();
 		session.save(news1);
 	}
 
@@ -98,10 +108,11 @@ public class HibernateTest {
 	@Before
 	public void init() {
 
-		configuration = new Configuration().configure();
+		Configuration configuration = new Configuration().configure();
 		ServiceRegistry serviceRegistry = new ServiceRegistryBuilder().applySettings(configuration.getProperties())
 				.buildServiceRegistry();
 		sessionFactory = configuration.buildSessionFactory(serviceRegistry);
+
 		session = sessionFactory.openSession();
 		tx = session.beginTransaction();
 

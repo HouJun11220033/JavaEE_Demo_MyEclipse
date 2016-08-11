@@ -1,39 +1,42 @@
 package com.hibernate.guigu.helloworld;
 
+import java.sql.Blob;
+import java.util.Date;
+
 public class News {
 
 	private Integer id;
 	private String title;
 	private String author;
 
-	// private Date date;
+	private Date date;
 
-	@Override
-	public String toString() {
-		return "News [id=" + id + ", title=" + title + ", author=" + author
-				+ "]";
+	// 该属性值为： title: author
+	private String desc;
+
+	// 大文本
+	private String content;
+	// 二进制数据
+	private Blob image;
+
+	public String getContent() {
+		return content;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
+	}
+
+	public Blob getImage() {
+		return image;
+	}
+
+	public void setImage(Blob image) {
+		this.image = image;
 	}
 
 	public Integer getId() {
 		return id;
-	}
-
-	public News(String title, String author) {
-
-		this.title = title;
-		this.author = author;
-		// this.date = (Date);
-	}
-
-	public News() {
-
-	}
-
-	public News(Integer id, String title, String author) {
-		this.id = id;
-		this.title = title;
-		this.author = author;
-
 	}
 
 	public void setId(Integer id) {
@@ -54,6 +57,38 @@ public class News {
 
 	public void setAuthor(String author) {
 		this.author = author;
+	}
+
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
+
+	public News(String title, String author, Date date) {
+		super();
+		this.title = title;
+		this.author = author;
+		this.date = date;
+	}
+
+	public News() {
+
+	}
+
+	@Override
+	public String toString() {
+		return "News [id=" + id + ", title=" + title + ", author=" + author + ", date=" + date + "]";
+	}
+
+	public String getDesc() {
+		return desc;
+	}
+
+	public void setDesc(String desc) {
+		this.desc = desc;
 	}
 
 }
