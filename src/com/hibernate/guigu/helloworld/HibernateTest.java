@@ -1,12 +1,10 @@
 package com.hibernate.guigu.helloworld;
 
-import java.io.FileInputStream;
 import java.io.InputStream;
 import java.sql.Blob;
 import java.sql.SQLException;
 import java.util.Date;
 
-import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -25,17 +23,37 @@ public class HibernateTest {
 	private Transaction transaction;
 
 	@Test
+	public void testComponent() {
+		Worker worker = new Worker();
+		Pay pay = new Pay();
+		pay.setMonthlyPay(1000);
+		pay.setYearPay(80000);
+		pay.setVocationWithPay(5);
+
+		worker.setName("ABCD");
+		worker.setPay(pay);
+		session.save(worker);
+
+	}
+
+	@Test
 	public void testBlob() throws Exception {
-		News news = new News();
-		news.setAuthor("cc");
-		news.setContent("JDroid");
-		news.setDate(new Date());
-		news.setDesc("DESC");
-		news.setTitle("CC");
-		InputStream stream = new FileInputStream("1.jpg");
-		Blob image = (Blob) Hibernate.getLobCreator(session).createBlob(stream, stream.available());
-		news.setImage(image);
-		session.save(news);
+		// News news = new News();
+		// news.setAuthor("cc");
+		// news.setContent("JDroid");
+		// news.setDate(new Date());
+		// news.setDesc("DESC");
+		// news.setTitle("CC");
+		// InputStream stream = new FileInputStream("1.jpg");
+		// Blob image = (Blob)
+		// Hibernate.getLobCreator(session).createBlob(stream,
+		// stream.available());
+		// news.setImage(image);
+		// session.save(news);
+		News news = (News) session.get(News.class, 7);
+		Blob imageBlob = (Blob) news.getImage();
+		InputStream inputStream = imageBlob.getBinaryStream();
+		System.out.println(inputStream.available());
 
 	}
 

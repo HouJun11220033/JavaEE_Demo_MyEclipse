@@ -25,5 +25,6 @@
 		<!-- <mapping resource="com/hibernate/tutorialspoint/model/Employee.hbm.xml" 
 			/> -->
 		<mapping resource="com/hibernate/guigu/helloworld/News.hbm.xml" />
+		<mapping resource="com/hibernate/guigu/helloworld/Worker.hbm.xml" />
 	</session-factory>
 </hibernate-configuration>

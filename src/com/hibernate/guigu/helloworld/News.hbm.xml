@@ -6,10 +6,9 @@
 
 	<class name="News" table="NEWS" dynamic-update="true">
 
-		<id name="id" type="java.lang.Integer" unsaved-value="111">
+		<id name="id" type="java.lang.Integer">
 			<column name="ID" />
 			<generator class="native" />
-
 		</id>
 
 		<property name="title" type="string" column="TITLE" unique="true"
