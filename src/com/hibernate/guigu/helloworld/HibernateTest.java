@@ -16,7 +16,7 @@ public class HibernateTest {
 	private SessionFactory sessionFactory;
 	private Session session;
 	private Configuration configuration;
-	private Transaction tx;
+	private Transaction transaction;
 
 	@Test
 	public void testIdGenerator() throws InterruptedException {
@@ -24,6 +24,88 @@ public class HibernateTest {
 		session.save(news);
 
 		// Thread.sleep(5000);
+	}
+
+	@Test
+	public void testDelete()
+	{
+		News news = (News) session.get(News.class, 4);
+		session.delete(news);
+		System.out.println(news.getId());
+		
+	}
+
+	@Test
+	public void testSaveOrUpdate() {
+		News news = new News("TTT", "fff", new Date());
+		// 若 OID 不为 null, 但数据表中还没有和其对应的记录. 会抛出一个异常.
+		// OID和数据库中的ID不一样！！！
+		news.setId(111);
+		session.saveOrUpdate(news);
+
+	}
+
+	@Test
+	public void testUpdate() {
+		News news1 = (News) session.get(News.class, 3);
+		// 若数据表中没有对应的记录, 但还调用了 update 方法, 会抛出异常
+		// News news2 = new News("FF", "ff", new java.sql.Date(new
+		// Date().getTime()));
+		transaction.commit();
+		session.close();
+		news1.setId(6);
+		news1.setAuthor("LLL");
+		session = sessionFactory.openSession();
+		transaction = session.beginTransaction();
+
+		// news.setAuthor("HouJun");
+		session.update(news1);
+
+	}
+
+	@Test
+	public void testLoad() {
+		// load:懒汉式
+		News news = (News) session.load(News.class, 3);
+		System.out.println(news.getClass().getName());
+		// session.close();
+		System.out.println(news);
+
+	}
+
+	@Test
+	public void testGet() {
+		// 执行 get 方法: 会立即加载对象.
+		News news = (News) session.get(News.class, 3);
+		session.close();
+		System.out.println(news);
+
+	}
+
+	@Test
+	public void testPersist() {
+		News news = new News();
+		news.setTitle("EE");
+		news.setAuthor("ee");
+		news.setDate(new Date());
+		// 和save方法的区别:如果该持久化对象已经有了ID，则不能再setId了
+		// news.setId(200);
+		session.persist(news);
+
+	}
+
+	@Test
+	public void testSave() {
+		News news = new News();
+		news.setTitle("CC");
+		news.setAuthor("cc");
+		news.setDate(new Date());
+		news.setId(100);
+		System.out.println(news);
+		session.save(news);
+		// 变为持久化对象后，我再试试插入id
+		// news.setId(111);
+
 	}
 
 	@Test
@@ -114,13 +196,13 @@ public class HibernateTest {
 		sessionFactory = configuration.buildSessionFactory(serviceRegistry);
 
 		session = sessionFactory.openSession();
-		tx = session.beginTransaction();
+		transaction = session.beginTransaction();
 
 	}
 
 	@After
 	public void destory() {
-		tx.commit();
+		transaction.commit();
 		session.close();
 		sessionFactory.close();
 
