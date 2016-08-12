@@ -1,11 +1,17 @@
 package com.hibernate.guigu.helloworld;
 
+import java.io.FileInputStream;
+import java.io.InputStream;
+import java.sql.Blob;
+import java.sql.SQLException;
 import java.util.Date;
 
+import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.jdbc.Work;
 import org.hibernate.service.ServiceRegistry;
 import org.hibernate.service.ServiceRegistryBuilder;
 import org.junit.After;
@@ -19,6 +25,31 @@ public class HibernateTest {
 	private Transaction transaction;
 
 	@Test
+	public void testBlob() throws Exception {
+		News news = new News();
+		news.setAuthor("cc");
+		news.setContent("JDroid");
+		news.setDate(new Date());
+		news.setDesc("DESC");
+		news.setTitle("CC");
+		InputStream stream = new FileInputStream("1.jpg");
+		Blob image = (Blob) Hibernate.getLobCreator(session).createBlob(stream, stream.available());
+		news.setImage(image);
+		session.save(news);
+
+	}
+
+	@Test
+	public void testPropertyUpdate() {
+		// 在持久化类的配置文件里有: update="false"
+		News news = (News) session.get(News.class, 1);
+		news.setTitle("aaaa");
+		System.out.println(news.getDesc());
+		System.out.println(news.getDate().getClass());
+
+	}
+
+	@Test
 	public void testIdGenerator() throws InterruptedException {
 		News news = new News("AA", "aa", new java.sql.Date(new Date().getTime()));
 		session.save(news);
@@ -27,20 +58,51 @@ public class HibernateTest {
 	}
 
 	@Test
-	public void testDelete()
-	{
-		News news = (News) session.get(News.class, 4);
+	public void testDynamicUpdate() {
+		// 动态更新，不用调用session方法
+		News news = (News) session.get(News.class, 1);
+		news.setAuthor("ABCD");
+	}
+
+	@Test
+	public void testDoWork() {
+		session.doWork(new Work() {
+
+			@Override
+			// JDBC
+			public void execute(java.sql.Connection connection) throws SQLException {
+				System.out.println(connection);
+
+			}
+
+		});
+	}
+
+	@Test
+	public void testEvict() {
+		News news1 = (News) session.get(News.class, 1);
+		News news2 = (News) session.get(News.class, 2);
+		news1.setAuthor("ww");
+		news2.setAuthor("ddd");
+		// session.evict(news1);
+		// session.update(news1);
+
+	}
+
+	@Test
+	public void testDelete() {
+		News news = (News) session.get(News.class, 3);
 		session.delete(news);
 		System.out.println(news.getId());
-		
+
 	}
 
 	@Test
 	public void testSaveOrUpdate() {
-		News news = new News("TTT", "fff", new Date());
+		News news = new News("LLL", "fff", new Date());
 		// 若 OID 不为 null, 但数据表中还没有和其对应的记录. 会抛出一个异常.
 		// OID和数据库中的ID不一样！！！
-		news.setId(111);
+		// news.setId(111);
 		session.saveOrUpdate(news);
 
 	}
