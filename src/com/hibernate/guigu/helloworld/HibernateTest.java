@@ -100,22 +100,29 @@ public class HibernateTest {
 	public void testEvict() {
 		News news1 = (News) session.get(News.class, 1);
 		News news2 = (News) session.get(News.class, 2);
-		news1.setAuthor("ww");
-		news2.setAuthor("ddd");
-		// session.evict(news1);
+		news1.setAuthor("Hou");
+		news2.setAuthor("tt");
+		// 当执行 close() 或 clear(),evict() 之后，持久对象会变为脱管对象。
+		session.evict(news1);
+		System.out.println(news1);
+		// 通过 Session 的 update(),saveOrUpdate() 和 lock() 等方法，把脱管对象变为持久对象。
 		// session.update(news1);
+		// save:临时到持久
+		session.save(news1);
 
 	}
 
 	@Test
 	public void testDelete() {
-		News news = (News) session.get(News.class, 3);
+		News news = (News) session.get(News.class, 2);
 		session.delete(news);
-		System.out.println(news.getId());
+		// 删除后OID为null
+		System.out.println(news);
 
 	}
 
 	@Test
+	// 这个方法宗旨就是把游离对象转换为持久对象
 	public void testSaveOrUpdate() {
 		News news = new News("LLL", "fff", new Date());
 		// 若 OID 不为 null, 但数据表中还没有和其对应的记录. 会抛出一个异常.
