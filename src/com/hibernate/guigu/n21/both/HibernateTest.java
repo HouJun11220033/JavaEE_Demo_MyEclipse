@@ -46,7 +46,7 @@ public class HibernateTest {
 
 	@Test
 	public void testDelete() {
-		Customer customer = (Customer) session.get(Customer.class, 1);
+		Customer customer = (Customer) session.get(Customer.class, 3);
 		session.delete(customer);
 	}
 
