@@ -28,10 +28,16 @@
 		<!-- <mapping resource="com/hibernate/guigu/helloworld/Worker.hbm.xml" 
 			/> -->
 
-<!-- 		<mapping resource="com/hibernate/guigu/n21/model/Customer.hbm.xml" /> -->
-<!-- 		<mapping resource="com/hibernate/guigu/n21/model/Order.hbm.xml" /> -->
-		
-		<mapping resource="com/hibernate/guigu/n21/both/model/Customer.hbm.xml" />
-		<mapping resource="com/hibernate/guigu/n21/both/model/Order.hbm.xml" />
+		<!-- <mapping resource="com/hibernate/guigu/n21/model/Customer.hbm.xml" 
+			/> -->
+		<!-- <mapping resource="com/hibernate/guigu/n21/model/Order.hbm.xml" /> -->
+
+		<!-- <mapping resource="com/hibernate/guigu/n21/both/model/Customer.hbm.xml" 
+			/> -->
+		<!-- <mapping resource="com/hibernate/guigu/n21/both/model/Order.hbm.xml" 
+			/> -->
+
+		<mapping resource="com/hibernate/guigu/one2one/foreign/Department.hbm.xml" />
+		<mapping resource="com/hibernate/guigu/one2one/foreign/Manager.hbm.xml" />
 	</session-factory>
 </hibernate-configuration>
