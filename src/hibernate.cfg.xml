@@ -37,7 +37,12 @@
 		<!-- <mapping resource="com/hibernate/guigu/n21/both/model/Order.hbm.xml" 
 			/> -->
 
-		<mapping resource="com/hibernate/guigu/one2one/foreign/Department.hbm.xml" />
-		<mapping resource="com/hibernate/guigu/one2one/foreign/Manager.hbm.xml" />
+		<!-- <mapping resource="com/hibernate/guigu/one2one/foreign/Department.hbm.xml" 
+			/> -->
+		<!-- <mapping resource="com/hibernate/guigu/one2one/foreign/Manager.hbm.xml" 
+			/> -->
+
+		<mapping resource="com/hibernate/guigu/one2one/primary/Department.hbm.xml" />
+		<mapping resource="com/hibernate/guigu/one2one/primary/Manager.hbm.xml" />
 	</session-factory>
 </hibernate-configuration>
