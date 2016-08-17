@@ -46,8 +46,12 @@
 			/> -->
 		<!-- <mapping resource="com/hibernate/guigu/one2one/primary/Manager.hbm.xml" 
 			/> -->
-		<mapping resource="com/hibernate/guigu/n2n/Category.hbm.xml" />
-		<mapping resource="com/hibernate/guigu/n2n/Item.hbm.xml" />
+		<!-- <mapping resource="com/hibernate/guigu/n2n/Category.hbm.xml" /> -->
+		<!-- <mapping resource="com/hibernate/guigu/n2n/Item.hbm.xml" /> -->
+		<!-- <mapping resource="com/hibernate/guigu/joined/subclass/Person.hbm.xml" 
+			/> -->
+		<mapping resource="com/hibernate/guigu/strategy/Customer.hbm.xml" />
+		<mapping resource="com/hibernate/guigu/strategy/Order.hbm.xml" />
 
 	</session-factory>
 </hibernate-configuration>
