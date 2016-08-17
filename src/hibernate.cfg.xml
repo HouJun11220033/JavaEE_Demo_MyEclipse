@@ -50,8 +50,9 @@
 		<!-- <mapping resource="com/hibernate/guigu/n2n/Item.hbm.xml" /> -->
 		<!-- <mapping resource="com/hibernate/guigu/joined/subclass/Person.hbm.xml" 
 			/> -->
-		<mapping resource="com/hibernate/guigu/strategy/Customer.hbm.xml" />
-		<mapping resource="com/hibernate/guigu/strategy/Order.hbm.xml" />
+<!-- 		<mapping resource="com/hibernate/guigu/strategy/Customer.hbm.xml" /> -->
+<!-- 		<mapping resource="com/hibernate/guigu/strategy/Order.hbm.xml" /> -->
+			<mapping resource="com/hibernate/guigu/subclass/Person.hbm.xml"/>
 
 	</session-factory>
 </hibernate-configuration>
