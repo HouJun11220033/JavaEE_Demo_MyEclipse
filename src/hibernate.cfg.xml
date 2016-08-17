@@ -52,7 +52,7 @@
 			/> -->
 <!-- 		<mapping resource="com/hibernate/guigu/strategy/Customer.hbm.xml" /> -->
 <!-- 		<mapping resource="com/hibernate/guigu/strategy/Order.hbm.xml" /> -->
-			<mapping resource="com/hibernate/guigu/subclass/Person.hbm.xml"/>
+			<mapping resource="com/hibernate/guigu/union/subclass/Person.hbm.xml"/>
 
 	</session-factory>
 </hibernate-configuration>
